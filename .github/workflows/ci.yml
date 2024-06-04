@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go: ["1.16", "1.22"] # Versões do Golang para execução
+        go: ["1.22"] # Versões do Golang para execução
     steps:
       - uses: actions/checkout@v2 # Faz o checkout dos dados o último push para a máquina Ubuntu que irá rodar o script
       - uses: actions/setup-go@v2 # Instala o Golang na máquina
