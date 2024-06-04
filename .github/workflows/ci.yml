@@ -1,0 +1,13 @@
+name: ci-golang-workflow
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2 # Faz o checkout dos dados o último push para a máquina Ubuntu que irá rodar o script
+      - uses: actions/setup-go@v2 # Instala o Golang na máquina
+        with:
+          go-version: 1.22
+      - run: go test
+      - run: go run math.go
+      - name: Tests
