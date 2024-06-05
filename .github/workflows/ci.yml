@@ -14,5 +14,18 @@ jobs:
       - uses: actions/setup-go@v2 # Instala o Golang na máquina
         with:
           go-version: ${{ matrix.go }} # Propriedades do matrix.go para versões do Golang
-      - run: go test
-      - run: go run math.go
+      - run: go test # Executa os testes
+      - run: go run math.go # Executa o programa
+
+      # Copiados da action "build-and-push-docker-images"
+      # https://github.com/marketplace/actions/build-and-push-docker-images
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push # Faz o build da imagem e push para o Docker Hub
+        uses: docker/build-push-action@v5
+        with:
+          push: false # Faz o push para o Docker Hub (false para apenas fazer o build)
+          tags: vrbarreira/full-cycle-gh-actions:latest # Nome da imagem
